@@ -1,0 +1,290 @@
+body {
+    background: #f5f5f5;
+    background-image: url("/images/family.jpg");
+    background-size: cover; /* <------ */
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 100vh;
+    background-color: #000;
+}
+p {
+    margin: 0;
+    color: #364f6b;
+}
+a {
+    color: #3fc1c9;
+    text-decoration: none;
+}
+a:hover {
+    color: #fc5185;
+}
+nav {
+    position: fixed;
+    height: 50px;
+}
+.registrationBox {
+    text-align: center;
+    height: 100vh;
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.leftBox {
+    width: 60%;
+    height: 85%;
+    padding: 20px;
+    display: table;
+}
+.leftBox div {
+    height: 20px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.leftBox h2 {
+    color: #f5f5f5;
+    font-size: 60px;
+}
+.rightBox {
+    width: 30%;
+    opacity: 0.9;
+    background: #f5f5f5;
+    height: 85%;
+    padding: 20px;
+}
+.registrationBox input[type="text"],
+.registrationBox input[type="current-password"] {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 90%;
+}
+.rightBox .styledP {
+    font-size: 20px;
+}
+button {
+    background-color: #3fc1c9;
+    border: 0;
+    color: #f5f5f5;
+    padding: 10px;
+    width: 100%;
+}
+button:hover {
+    background-color: #fc5185;
+}
+.logoSmall {
+    height: 30px;
+}
+.logoTitle {
+    font-family: "Pacifico", cursive;
+    font-size: 30px;
+}
+.navBox {
+    display: inline-flex;
+    height: 30px;
+    background: #f5f5f5;
+    position: fixed;
+    opacity: 0.95;
+    box-shadow: 9px 2px 10px #000;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    justify-content: space-between;
+}
+.profileWrap img {
+    height: 30px;
+}
+.uploaderModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fc5185;
+    z-index: 1000;
+    margin: 0;
+}
+.innerModal {
+    background: #f5f5f5;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    overflow-y: auto;
+    width: 400px;
+    height: 200px;
+    box-shadow: 4px 3px 9px #333;
+    opacity: 0.95;
+    text-align: center;
+}
+.closebtn {
+    top: 5%;
+    right: 3%;
+    position: fixed;
+
+    color: #f76262;
+    cursor: pointer;
+    border: 1px solid #f76262;
+    padding: 5px 10px;
+}
+.closebtn:hover {
+    color: #3fc1c9;
+    border: 1px solid #3fc1c9;
+}
+
+.innerModal input[type="file" i] {
+    border: 0;
+}
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+    width: 0px;
+}
+.custom-file-input::before {
+    content: "Select images";
+    display: inline-block;
+
+    padding: 5px 8px;
+    -webkit-user-select: none;
+    color: #f5f5f5;
+    width: 100px;
+    background: #f76262;
+}
+.custom-file-input:hover::before {
+    background: #3fc1c9;
+    color: #f5f5f5;
+}
+.custom-file-input:active::before {
+    background: #3fc1c9;
+    color: #f5f5f5;
+}
+.profileBox {
+    margin: 70px 1% 1% 1%;
+    display: inline-flex;
+    width: 98%;
+    background: #f5f5f5;
+    opacity: 0.95;
+}
+.wrapBioAndWallPost {
+    width: 85%;
+}
+.profileImg {
+    width: 15%;
+    padding: 20px;
+}
+.profileImg img {
+    width: 100%;
+    height: auto;
+}
+.bioeditorBox {
+    color: #f5f5f5;
+}
+.bioeditorBox h1 {
+    color: #364f6b;
+}
+.bioTextarea {
+    width: 100%;
+}
+.navBox .profileWrap {
+    display: inherit;
+}
+.linkNav {
+    padding-right: 20px;
+}
+,
+.findPeople span {
+    padding: 70px 20px 20px 20px;
+    color: #f5f5f5;
+}
+.findPeople li {
+    display: flex;
+    list-style: none;
+    padding: 15px 0;
+}
+.findPeople li img {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+}
+.findPeople h2 {
+    color: #f5f5f5;
+    padding-left: 20px;
+}
+.friendsbox {
+    display: flex;
+}
+.chat-container {
+    background: white;
+    padding: 1%;
+    overflow-y: scroll;
+    width: 98%;
+    height: 400px;
+}
+.chat-container .chatInner {
+    border-bottom: 1px solid #eee;
+    min-height: 40px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.chat-container span {
+    color: #f76262;
+}
+.chatbox {
+}
+.chatbox textarea {
+    width: 98%;
+    padding: 1%;
+}
+.chatbox img {
+    top: 8px;
+    width: 30px;
+    border-radius: 50px;
+    position: absolute;
+    left: 0;
+}
+.whatever {
+    padding-left: 40px;
+    padding-top: 10px;
+}
+.chatbox .chatdate {
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    font-size: 11px;
+    color: gray;
+}
+.wallpostBox {
+    padding: 20px 0;
+}
+.wallpostBox textarea {
+    width: 98%;
+}
+.wallposttitle {
+    color: #f76262;
+}
+.wallpostlistWrap {
+    display: inline-flex;
+    width: 98%;
+    padding: 5px;
+    position: relative;
+}
+.wallpostlistWrap img {
+    top: 8px;
+    width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+    position: absolute;
+    left: 0;
+}
+.wallpostlistWrap .wrapwallposts {
+    padding-left: 50px;
+}
+.names {
+    color: #3fc1c9;
+}
+.names:hover {
+    color: #f76262;
+}
