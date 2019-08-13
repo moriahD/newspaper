@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import App from "./App";
-import Welcome from "./welcome";
+import Admin from "./admin";
 import App from "./app";
 
 import { Provider } from "react-redux";
@@ -17,9 +17,9 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
-if (location.pathname == "/welcome") {
+if (location.pathname == "/admin") {
     //they are logged out
-    elem = <Welcome />;
+    elem = <Admin />;
 } else {
     init(store);
     elem = (
