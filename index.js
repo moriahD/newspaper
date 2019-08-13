@@ -74,11 +74,20 @@ if (process.env.NODE_ENV != "production") {
 }
 app.get("/admin", function(req, res) {
     if (req.session.userId) {
-        res.redirect("/");
+        res.redirect("/adminMain");
     } else {
         res.sendFile(__dirname + "/index.html");
     }
 });
+app.get("/adminMain", function(req, res) {
+    console.log("/admin/main ciao");
+    db.getArticles()
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => console.log(err));
+});
+
 // app.post("/register", async (req, res) => {
 //     const { first, last, email, pass } = req.body;
 //     try {
@@ -102,8 +111,6 @@ app.post("/login", function(req, res) {
                     error: "Something is wrong! Please try to type carefully."
                 });
             } else {
-                req.session.userId = result.rows[0].id;
-
                 return result;
             }
         })
@@ -115,7 +122,30 @@ app.post("/login", function(req, res) {
                             error: true
                         });
                     } else {
-                        res.json({ success: true });
+                        req.session.userId = result.rows[0].id;
+                        console.log("req.session.userId", req.session.userId);
+
+                        db.checkIfAdmin(req.session.userId)
+                            .then(data => {
+                                console.log(
+                                    "data.rows.isreporter: ",
+                                    data.rows[0]
+                                );
+                                if (
+                                    data.rows[0].isreporter == true ||
+                                    data.rows[0].iseditor == true
+                                ) {
+                                    res.json({ success: true });
+                                } else {
+                                    console.log(
+                                        "you don't have access to admin"
+                                    );
+                                    res.json({ success: false });
+                                }
+                            })
+                            .catch(err =>
+                                console.log("error in checkIfAdmin: ", err)
+                            );
                     }
                 })
                 .catch(err => {

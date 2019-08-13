@@ -20,14 +20,13 @@ export default class App extends React.Component {
         };
     }
     async componentDidMount() {
-        const { data } = await axios.get("/user");
-        console.log("data.user.rows[0]: ", data.user.rows[0]);
-        console.log(this.state.bio);
-        this.setState(data.user.rows[0]);
+        // const { data } = await axios.get("/admin");
+        // console.log("componentDidMount data: ", data.rows[0]);
+        // this.setState(data.rows);
     }
     render() {
         if (!this.state.image) {
-            return <div>Loading...</div>;
+            return <div>Loading...pronto</div>;
         }
 
         return (

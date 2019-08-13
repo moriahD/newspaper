@@ -18,17 +18,16 @@ export default class Login extends React.Component {
             })
             .then(({ data }) => {
                 if (data.success) {
+                    console.log("hello");
+                    location.replace("/adminMain");
+                } else if (!data.success) {
                     location.replace("/");
-                } else {
-                    this.setState({
-                        error: true
-                    });
                 }
             });
     }
     render() {
         return (
-            <div>
+            <div className="loginBox">
                 {this.state.error && (
                     <div className="error">
                         Oops, something went wrong! Try again.
@@ -36,13 +35,14 @@ export default class Login extends React.Component {
                 )}
                 <form>
                     <input
+                        type="text"
                         name="email"
                         onChange={e => this.handleChange(e)}
                         placeholder="Email"
                     />
                     <input
                         name="pass"
-                        type="password"
+                        type="current-password"
                         onChange={e => this.handleChange(e)}
                         placeholder="Password"
                     />

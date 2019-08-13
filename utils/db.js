@@ -8,3 +8,13 @@ if (process.env.DATABASE_URL) {
 exports.getUserId = function(email) {
     return db.query("SELECT * FROM users WHERE email = $1", [email]);
 };
+
+exports.checkIfAdmin = function checkIfAdmin(id) {
+    return db.query(`SELECT isreporter, iseditor FROM users WHERE id = $1`, [
+        id
+    ]);
+};
+
+exports.getArticles = function getArticles() {
+    return db.query(`SELECT * FROM article`);
+};
