@@ -2,15 +2,16 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server, { origins: "localhost:8080" });
-
+const hb = require("express-handlebars");
 const compression = require("compression");
 const db = require("./utils/db");
 const bc = require("./utils/bc");
 const csurf = require("csurf");
+app.engine("handlebars", hb());
+app.set("view engine", "handlebars");
 app.use(require("body-parser").json());
 
 app.use(express.static("./public"));
-app.set("view engine", "handlebars");
 app.use(compression());
 const cookieSession = require("cookie-session");
 const cookieSessionMiddleware = cookieSession({
@@ -83,7 +84,7 @@ app.get("/adminMain", function(req, res) {
     console.log("/admin/main ciao");
     db.getArticles()
         .then(data => {
-            res.json(data);
+            res.json(data.rows);
         })
         .catch(err => console.log(err));
 });
@@ -185,6 +186,32 @@ io.on("connection", function(socket) {
     //         socket.emit("chatMessages", data.rows.reverse());
     //     })
     //     .catch(err => console.log("err in getting last 10 messages:", err));
+});
+
+app.get("/article/:id", function(req, res) {
+    db.getArticleById(req.params.id) //i have to pass id here
+        .then(result => {
+            var title = result.rows[0].title;
+            res.render("article", {
+                title: title
+            });
+        })
+        .catch(err => {
+            console.log("error in getting article info by id", err);
+        });
+});
+
+app.get("/", function(req, res) {
+    db.getArticles() //i have to pass id here
+        .then(result => {
+            var articles = result.rows;
+            res.render("articles", {
+                articles: articles
+            });
+        })
+        .catch(err => {
+            console.log("error in getting article info by id", err);
+        });
 });
 
 // --------------- DO NOT DELETE THIS ------------------ //

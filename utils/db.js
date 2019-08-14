@@ -18,3 +18,11 @@ exports.checkIfAdmin = function checkIfAdmin(id) {
 exports.getArticles = function getArticles() {
     return db.query(`SELECT * FROM article`);
 };
+exports.getArticleById = function getArticleById(id) {
+    return db.query(
+        `
+        select * from article WHERE id = $1
+    `,
+        [id]
+    );
+};
