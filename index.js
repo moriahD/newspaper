@@ -75,18 +75,18 @@ if (process.env.NODE_ENV != "production") {
 }
 app.get("/admin", function(req, res) {
     if (req.session.userId) {
-        res.redirect("/adminMain");
+        res.redirect("/admin/main");
     } else {
         res.sendFile(__dirname + "/index.html");
     }
 });
-app.get("/adminMain", function(req, res) {
+app.get("/admin/*", function(req, res) {
     console.log("/admin/main ciao");
-    db.getArticles()
-        .then(data => {
-            res.json(data.rows);
-        })
-        .catch(err => console.log(err));
+    if (req.session.userId) {
+        res.sendFile(__dirname + "/index.html");
+    } else {
+        res.redirect("/admin");
+    }
 });
 
 // app.post("/register", async (req, res) => {
@@ -136,6 +136,10 @@ app.post("/login", function(req, res) {
                                     data.rows[0].isreporter == true ||
                                     data.rows[0].iseditor == true
                                 ) {
+                                    req.session.reporterId =
+                                        data.rows[0].isreporter;
+                                    req.session.editorId =
+                                        data.rows[0].iseditor;
                                     res.json({ success: true });
                                 } else {
                                     console.log(
@@ -194,6 +198,18 @@ app.get("/article/:id", function(req, res) {
             var title = result.rows[0].title;
             res.render("article", {
                 title: title
+            });
+        })
+        .catch(err => {
+            console.log("error in getting article info by id", err);
+        });
+});
+app.get("/category/:id", function(req, res) {
+    db.getArticlesByCategory(req.params.id) //i have to pass id here
+        .then(result => {
+            var articles = result.rows;
+            res.render("category", {
+                articles: articles
             });
         })
         .catch(err => {

@@ -25,10 +25,6 @@ export default class App extends React.Component {
         // this.setState(data.rows);
     }
     render() {
-        if (!this.state.image) {
-            return <div>Loading...pronto</div>;
-        }
-
         return (
             <div className="profileWrap">
                 <BrowserRouter>

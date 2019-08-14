@@ -19,7 +19,7 @@ export default class Login extends React.Component {
             .then(({ data }) => {
                 if (data.success) {
                     console.log("hello");
-                    location.replace("/adminMain");
+                    location.replace("/admin/main");
                 } else if (!data.success) {
                     location.replace("/");
                 }

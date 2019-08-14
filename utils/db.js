@@ -26,3 +26,11 @@ exports.getArticleById = function getArticleById(id) {
         [id]
     );
 };
+exports.getArticlesByCategory = function getArticlesByCategory(category) {
+    return db.query(
+        `
+        select * from article WHERE category_id = $1
+    `,
+        [category]
+    );
+};
