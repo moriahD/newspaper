@@ -81,6 +81,14 @@ app.get("/admin", function(req, res) {
         res.sendFile(__dirname + "/index.html");
     }
 });
+app.get("/admin/article/:id.json", async function(req, res) {
+    try {
+        const data = await db.getArticleById(req.params.id);
+        return res.json(data.rows[0]);
+    } catch (err) {
+        console.log("Error Message in /admin/article/:id.json router: ", err);
+    }
+});
 // get article lists in admin
 app.get("/admin/articleLists.json", async function(req, res) {
     try {

@@ -33,9 +33,10 @@ export default function Articles() {
                             <p> {list.id}</p>
                             <p>{list.title}</p>
                             <p>{list.last_update}</p>
-                            <Link to={`/user/${list.id}`}>
+                            <Link to={`/articles/${list.id}`}>
                                 <button>Modify</button>
                             </Link>
+
                             <ArticleDelete
                                 handler={refreshArticles}
                                 articleid={list.id}
