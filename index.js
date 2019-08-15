@@ -81,6 +81,20 @@ app.get("/admin", function(req, res) {
         res.sendFile(__dirname + "/index.html");
     }
 });
+app.post("/admin/article/new.json", async (req, res) => {
+    try {
+        const result = await db.newArticle(
+            1,
+            1,
+            req.body.editTitle,
+            req.body.editDescription,
+            req.body.editArticleBody
+        );
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.log("err in save new article", err);
+    }
+});
 // get article by id for modify
 app.get("/admin/article/:id.json", async function(req, res) {
     try {
@@ -243,9 +257,9 @@ io.on("connection", function(socket) {
 app.get("/article/:id", function(req, res) {
     db.getArticleById(req.params.id) //i have to pass id here
         .then(result => {
-            var title = result.rows[0].title;
+            var article = result.rows[0];
             res.render("article", {
-                title: title
+                article: article
             });
         })
         .catch(err => {

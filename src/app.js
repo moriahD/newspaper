@@ -6,6 +6,7 @@ import BioEditor from "./bioeditor";
 import SetUsers from "./setusers";
 import Articles from "./articles";
 import Article from "./article";
+import ArticleNew from "./articleNew";
 import Friends from "./friends";
 import Chat from "./chat";
 import WallPost from "./wallpost";
@@ -33,16 +34,16 @@ export default class App extends React.Component {
                         <div className="navBox">
                             <div className="profileWrap">
                                 <div className="linkNav">
-                                    <Link to="/users">Users setting</Link>
+                                    <Link to="/admin/users">Users setting</Link>
                                 </div>
                                 <div className="linkNav">
-                                    <Link to="/articles">Articles</Link>
+                                    <Link to="/admin/articles">Articles</Link>
                                 </div>
                                 <div className="linkNav">
-                                    <Link to="/category">Category</Link>
+                                    <Link to="/admin/category">Category</Link>
                                 </div>
                                 <div className="linkNav">
-                                    <Link to="/logout">Logout</Link>
+                                    <Link to="/admin/logout">Logout</Link>
                                 </div>
                                 <ProfilePic
                                     image={this.state.image}
@@ -92,9 +93,18 @@ export default class App extends React.Component {
                             }}
                         />
 
-                        <Route path="/users" component={SetUsers} />
-                        <Route path="/articles/:id" component={Article} />
-                        <Route exact path="/articles" component={Articles} />
+                        <Route path="/admin/users" component={SetUsers} />
+                        <Route
+                            exact
+                            path="/admin/articles/new"
+                            component={ArticleNew}
+                        />
+                        <Route path="/admin/articles/:id" component={Article} />
+                        <Route
+                            exact
+                            path="/admin/articles"
+                            component={Articles}
+                        />
                         <Route path="/friends" component={Friends} />
                         <Route path="/chat" component={Chat} />
                     </div>

@@ -31,9 +31,9 @@ export default function Articles() {
                     <div key={list.id} className="listwrap">
                         <div className="list">
                             <p> {list.id}</p>
-                            <p>{list.title}</p>
+                            <p className="articleTitle">{list.title}</p>
                             <p>{list.last_update}</p>
-                            <Link to={`/articles/${list.id}`}>
+                            <Link to={`/admin/articles/${list.id}`}>
                                 <button>Modify</button>
                             </Link>
 

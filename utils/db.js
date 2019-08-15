@@ -65,3 +65,19 @@ exports.updateArticle = function updateArticle(
         [title, description, article_body, id]
     );
 };
+
+exports.newArticle = function newArticle(
+    reporter_id,
+    category_id,
+    title,
+    description,
+    article_body
+) {
+    return db.query(
+        `
+        INSERT INTO article (reporter_id, category_id, title, description, article_body)
+        VALUES ($1, $2, $3, $4, $5) RETURNING *
+    `,
+        [reporter_id, category_id, title, description, article_body]
+    );
+};

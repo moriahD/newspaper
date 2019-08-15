@@ -10,7 +10,7 @@ export default class Article extends React.Component {
     async componentDidMount() {
         const { id } = this.props.match.params;
 
-        const aritlce = await axios.get(`/admin/article/${id}.json`);
+        const aritlce = await axios.get(`/admin/article/new.json`);
         console.log(aritlce.data);
         this.setState(aritlce.data);
     }
@@ -31,17 +31,17 @@ export default class Article extends React.Component {
     }
     async submit(e) {
         e.preventDefault();
-        const { id } = this.props.match.params;
         console.log("state", this.state);
         try {
-            const { data } = await axios.post(`/admin/article/${id}.json`, {
+            const { data } = await axios.post(`/admin/article/new.json`, {
                 editTitle: this.state.title,
                 editDescription: this.state.description,
                 editArticleBody: this.state.article_body
             });
             console.log("data", data);
+            location.replace(`/admin/articles/${data.id}`);
         } catch (err) {
-            console.log(`error in /admin/article/${id}.json`, err);
+            console.log(`error in /admin/article/new.json`, err);
         }
     }
 

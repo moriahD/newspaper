@@ -19,7 +19,6 @@ video {
     color: #0092ca;
 }
 .adminNav {
-    background: #222831;
     padding: 10px;
     display: inline-flex;
     width: 100%;
@@ -31,6 +30,7 @@ video {
     padding: 11px;
 }
 .navBox {
+    background: #222831;
     display: inline-flex;
     height: 30px;
     position: fixed;
@@ -116,4 +116,10 @@ search input {
 }
 .articleFormWrap textarea {
     width: 100%;
+}
+.articleLists .list {
+    border-bottom: 1px solid #ccc;
+}
+.articleLists .articleTitle {
+    color: red;
 }
