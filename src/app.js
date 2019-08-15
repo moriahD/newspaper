@@ -3,8 +3,8 @@ import Uploader from "./uploader";
 import ProfilePic from "./profilepic";
 import Profile from "./profile";
 import BioEditor from "./bioeditor";
-import OtherProfile from "./otherprofile";
-import FindPeople from "./findpeople";
+import SetUsers from "./setusers";
+import Articles from "./articles";
 import Friends from "./friends";
 import Chat from "./chat";
 import WallPost from "./wallpost";
@@ -26,27 +26,22 @@ export default class App extends React.Component {
     }
     render() {
         return (
-            <div className="profileWrap">
+            <div className="adminNav">
                 <BrowserRouter>
                     <div>
                         <div className="navBox">
-                            <Link to="/">
-                                <img
-                                    className="logoSmall"
-                                    src="/images/logo.png"
-                                    alt="logo"
-                                />
-                            </Link>
-
                             <div className="profileWrap">
                                 <div className="linkNav">
-                                    <Link to="/findpeople">Find People</Link>
+                                    <Link to="/users">Users setting</Link>
                                 </div>
                                 <div className="linkNav">
-                                    <Link to="/friends">My Friends</Link>
+                                    <Link to="/articles">Articles</Link>
                                 </div>
                                 <div className="linkNav">
-                                    <Link to="/chat">Chat with friends</Link>
+                                    <Link to="/category">Category</Link>
+                                </div>
+                                <div className="linkNav">
+                                    <Link to="/logout">Logout</Link>
                                 </div>
                                 <ProfilePic
                                     image={this.state.image}
@@ -96,8 +91,8 @@ export default class App extends React.Component {
                             }}
                         />
 
-                        <Route path="/user/:id" component={OtherProfile} />
-                        <Route path="/findpeople" component={FindPeople} />
+                        <Route path="/users" component={SetUsers} />
+                        <Route path="/articles" component={Articles} />
                         <Route path="/friends" component={Friends} />
                         <Route path="/chat" component={Chat} />
                     </div>

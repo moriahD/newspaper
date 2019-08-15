@@ -34,3 +34,21 @@ exports.getArticlesByCategory = function getArticlesByCategory(category) {
         [category]
     );
 };
+exports.getArticlesByReporterId = function getArticlesByReporterId(
+    reporter_id
+) {
+    return db.query(
+        `
+        SELECT *, to_char( article.last_update, 'DD-MON-YYYY HH24:MI:SS') as last_update FROM article WHERE reporter_id = $1 ORDER BY article.last_update DESC
+    `,
+        [reporter_id]
+    );
+};
+exports.deleteArticle = function deleteArticle(id) {
+    return db.query(
+        `
+        DELETE FROM article WHERE id = $1
+    `,
+        [id]
+    );
+};

@@ -73,11 +73,36 @@ if (process.env.NODE_ENV != "production") {
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
+// ADMIN SIDE
 app.get("/admin", function(req, res) {
     if (req.session.userId) {
         res.redirect("/admin/main");
     } else {
         res.sendFile(__dirname + "/index.html");
+    }
+});
+// get article lists in admin
+app.get("/admin/articleLists.json", async function(req, res) {
+    try {
+        console.log("aaaaaaareq.session.userId: ", req.session.userId);
+        const data = await db.getArticlesByReporterId(req.session.userId);
+        console.log("getArticlesByReporterId data: ", data);
+        // if (!user.image) {
+        //     user.image = "/images/default.png";
+        // }
+        return res.json(data.rows);
+    } catch (err) {
+        console.log("Error Message in /admin/articleLists.json router: ", err);
+    }
+});
+// delete article in admin
+app.post("/admin/deleteArticle/:id.json", async function(req, res) {
+    console.log(req.body);
+    try {
+        const data = await db.deleteArticle(req.params.id);
+        return res.json(data.rows);
+    } catch (err) {
+        console.log("Error Message in /admin/deleteArticle.json router: ", err);
     }
 });
 app.get("/admin/*", function(req, res) {
@@ -191,7 +216,7 @@ io.on("connection", function(socket) {
     //     })
     //     .catch(err => console.log("err in getting last 10 messages:", err));
 });
-
+// NEWSPAPER FRONT SIDE
 app.get("/article/:id", function(req, res) {
     db.getArticleById(req.params.id) //i have to pass id here
         .then(result => {

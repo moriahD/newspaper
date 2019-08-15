@@ -10,15 +10,15 @@ video {
 .search-icon-container > svg {
     left: 0;
 }
-nav a {
+.adminNav a {
     color: #eeeeee;
     text-decoration: none;
 }
-nav a:hover {
+.adminNav a:hover {
     text-decoration: none;
     color: #0092ca;
 }
-nav {
+.adminNav {
     background: #222831;
     padding: 10px;
     display: inline-flex;
@@ -26,11 +26,27 @@ nav {
     justify-content: space-between;
     height: 20px;
 }
-nav span.logo {
+.adminNav span.logo {
     color: #0092ca;
     padding: 11px;
 }
-
+.navBox {
+    display: inline-flex;
+    height: 30px;
+    position: fixed;
+    opacity: 0.95;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    justify-content: space-between;
+}
+.navBox .profileWrap {
+    display: inherit;
+}
+.linkNav {
+    padding-right: 20px;
+}
 /*search button*/
 .logo-line .main-search {
     display: inline-block;
@@ -81,4 +97,17 @@ search input {
 }
 .adminLogin {
     border: 1px solid #ccc;
+}
+
+/*admin users page*/
+.usersettingBox {
+    margin: 70px 1% 1% 1%;
+    display: inline-flex;
+    width: 98%;
+}
+.articleLists a,
+.articleLists p {
+    color: #222831;
+}
+.listwrap {
 }

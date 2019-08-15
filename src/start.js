@@ -24,7 +24,7 @@ if (location.pathname == "/admin") {
     init(store);
     elem = (
         <Provider store={store}>
-            <App />;
+            <App />
         </Provider>
     );
 }
