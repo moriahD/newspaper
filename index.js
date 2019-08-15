@@ -81,12 +81,27 @@ app.get("/admin", function(req, res) {
         res.sendFile(__dirname + "/index.html");
     }
 });
+// get article by id for modify
 app.get("/admin/article/:id.json", async function(req, res) {
     try {
         const data = await db.getArticleById(req.params.id);
         return res.json(data.rows[0]);
     } catch (err) {
         console.log("Error Message in /admin/article/:id.json router: ", err);
+    }
+});
+// update article
+app.post("/admin/article/:id.json", async (req, res) => {
+    try {
+        const result = await db.updateArticle(
+            req.body.editTitle,
+            req.body.editDescription,
+            req.body.editArticleBody,
+            req.params.id
+        );
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.log("err in POST /bio", err);
     }
 });
 // get article lists in admin

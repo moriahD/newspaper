@@ -114,3 +114,6 @@ search input {
 .articleFormWrap {
     margin: 70px 1% 1% 1%;
 }
+.articleFormWrap textarea {
+    width: 100%;
+}

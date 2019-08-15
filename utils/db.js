@@ -52,3 +52,16 @@ exports.deleteArticle = function deleteArticle(id) {
         [id]
     );
 };
+exports.updateArticle = function updateArticle(
+    title,
+    description,
+    article_body,
+    id
+) {
+    return db.query(
+        `
+        UPDATE article SET title=$1, description=$2, article_body=$3 WHERE id = $4
+    `,
+        [title, description, article_body, id]
+    );
+};
