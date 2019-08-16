@@ -6,6 +6,20 @@
         <link rel="stylesheet" href="/style.css" />
 
     </head>
+    <div class="header-top container">
+      <div class="logo-wrap clearfix">
+        <label for="nav-toggle" class="nav-toggle-icon"><span class="ecu-bars"></span></label>
+        <label for="nav-toggle" class="page-overlay"></label>
+        <h1 class="header-logo"><a href="/">NEWSPAPER</a></h1>
+        <span class="header-search-toggle ecu-search"></span>
+      </div>
+      <!-- <div class="header-search-wrapper">
+        <form class="header-search" action="/search/">
+          <input name="q" type="text" value="" placeholder="Search">
+          <button><span class="ecu-search"></span></button>
+        </form>
+      </div> -->
+    </div>
     <div id="front_nav"><ul>
         <a href="/"><li>Home</li></a>
         <a href="/category/1"><li>Business</li></a>
@@ -14,7 +28,7 @@
         <a href="/category/4"><li>Tech</li></a>
     </ul></div>
     <body>
-        <div style="padding: 20px; margin-top:25px;">
+        <div style="padding: 20px;">
         {{{body}}}
     </div>
     </body>

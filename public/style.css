@@ -133,9 +133,9 @@ search input {
 /* front side */
 #front_nav {
     display: block;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #333;
+    border-top: 1px solid #ccc;
     padding: 0 20px;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -162,11 +162,31 @@ search input {
 .smallImgAdm {
     max-width: 100px;
 }
+.categoryWrap {
+    padding: 0.625em 0;
+    border-bottom: 1px solid #ccc;
+}
+.categoryWrap h1 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+.category .categoryWrap:hover {
+    color: #0092ca;
+}
 .categoryImg {
-    float: left;
-    max-width: 200px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+    width: 180px;
+    height: 130px;
+}
+figure {
+    display: table-cell;
+    vertical-align: top;
+    padding-right: 0.9375em;
+}
+.media-body {
+    display: table-cell;
+    vertical-align: top;
+    width: 10000px;
 }
 .categoryWrap {
     clear: both;
@@ -192,4 +212,14 @@ search input {
 .usersettingBox input.userRole {
     width: auto;
     height: auto;
+}
+.header-logo {
+    font-size: 42px;
+    font-size: 2.625rem;
+    line-height: 1;
+    text-align: center;
+}
+.header-logo a {
+    text-decoration: none;
+    color: #333;
 }
