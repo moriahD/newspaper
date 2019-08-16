@@ -123,3 +123,27 @@ search input {
 .articleLists .articleTitle {
     color: red;
 }
+/* front side */
+#front_nav {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    padding: 0 20px;
+}
+#front_nav ul {
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 5px 0px 4px;
+}
+#front_nav ul li {
+    display: inline-block;
+    font-family: nyt-franklin, helvetica, arial, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+}
+.articleLists .bodyLink {
+    color: #0092ca;
+}

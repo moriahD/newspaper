@@ -293,7 +293,7 @@ app.get("/", function(req, res) {
 });
 
 // --------------- DO NOT DELETE THIS ------------------ //
-app.get("*", function(req, res) {
+app.get("/admin/*", function(req, res) {
     if (!req.session.userId && req.url != "/admin") {
         res.redirect("/");
     } else {

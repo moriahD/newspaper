@@ -14,7 +14,7 @@ export default class Article extends React.Component {
         console.log(aritlce.data);
         this.setState(aritlce.data);
     }
-    changeTitle(e) {
+    insertTitle(e) {
         this.setState({
             title: e.target.value
         });
@@ -49,13 +49,14 @@ export default class Article extends React.Component {
         return (
             <div className="articleFormWrap">
                 <form>
+                    <label htmlFor="title">Select Category:</label>
+
                     <label htmlFor="title">Title:</label>
                     <textarea
                         name="title"
                         placeholder="title"
-                        defaultValue={this.state.title}
                         value={this.state.title}
-                        onChange={e => this.changeTitle(e)}
+                        onChange={e => this.insertTitle(e)}
                     >
                         {this.state.title}
                     </textarea>
@@ -63,7 +64,6 @@ export default class Article extends React.Component {
 
                     <textarea
                         name="description"
-                        defaultValue={this.state.description}
                         value={this.state.description}
                         onChange={e => this.changeDesc(e)}
                     >
@@ -74,7 +74,6 @@ export default class Article extends React.Component {
 
                     <textarea
                         name="article_body"
-                        defaultValue={this.state.article_body}
                         value={this.state.article_body}
                         onChange={e => this.changeArticleBody(e)}
                     >

@@ -25,7 +25,9 @@ export default function Articles() {
             className="articleLists"
             style={{ padding: "70px 20px 20px 20px" }}
         >
-            this is article lists page
+            <Link className="bodyLink" to={`/admin/articles/new`}>
+                Create new article
+            </Link>
             {lists &&
                 lists.map(list => (
                     <div key={list.id} className="listwrap">
