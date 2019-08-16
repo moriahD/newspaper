@@ -4,6 +4,7 @@ import SetUsers from "./setusers";
 import Articles from "./articles";
 import Article from "./article";
 import ArticleNew from "./articleNew";
+import MyAccount from "./myaccount";
 import Friends from "./friends";
 import Chat from "./chat";
 import axios from "./axios";
@@ -30,7 +31,12 @@ export default class App extends React.Component {
                         <div className="navBox">
                             <div className="profileWrap">
                                 <div className="linkNav">
-                                    <Link to="/admin/users">Users </Link>
+                                    <Link to="/admin/myaccount">
+                                        My account
+                                    </Link>
+                                </div>
+                                <div className="linkNav">
+                                    <Link to="/admin/user">User </Link>
                                 </div>
                                 <div className="linkNav">
                                     <Link to="/admin/articles">Articles</Link>
@@ -41,7 +47,8 @@ export default class App extends React.Component {
                             </div>
                         </div>
 
-                        <Route path="/admin/users" component={SetUsers} />
+                        <Route path="/admin/user" component={SetUsers} />
+                        <Route path="/admin/myaccount" component={MyAccount} />
                         <Route
                             exact
                             strict

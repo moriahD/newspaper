@@ -161,6 +161,36 @@ app.post(
         }
     }
 );
+app.get("/admin/myaccount.json", async (req, res) => {
+    const data = await db.getAccountInfo(req.session.userId);
+    res.json(data.rows[0]);
+});
+app.post("/admin/adduser.json", async (req, res) => {
+    const {
+        isReporter,
+        isEditor,
+        first_name,
+        last_name,
+        email,
+        password
+    } = req.body;
+    try {
+        let hashedpw = await bc.hashPassword(password);
+        let user = await db.newAdmin(
+            first_name,
+            last_name,
+            email,
+            hashedpw,
+            isReporter,
+            isEditor
+        );
+
+        console.log("/admin/adduser.json is happening");
+        res.json({ success: true });
+    } catch (err) {
+        console.log("err in /admin/adduser.json", err);
+    }
+});
 
 app.get("/admin/*", function(req, res) {
     console.log("/admin/main ciao");
@@ -171,20 +201,6 @@ app.get("/admin/*", function(req, res) {
     }
 });
 
-// app.post("/register", async (req, res) => {
-//     const { first, last, email, pass } = req.body;
-//     try {
-//         let hashedpw = await bc.hashPassword(pass);
-//         let user = await db.addUser(first, last, email, hashedpw);
-//
-//         req.session.userId = user.rows[0].id;
-//         console.log("req.session.userId in register: ", req.session.userId);
-//         res.json({ success: true });
-//     } catch (err) {
-//         console.log("err in POST /registration", err);
-//     }
-// });
-//
 app.post("/login", function(req, res) {
     //first check if the user is
     db.getUserId(req.body.email)

@@ -83,3 +83,27 @@ exports.newArticle = function newArticle(
         [reporter_id, category_id, title, description, article_body, image]
     );
 };
+exports.newAdmin = function newAdmin(
+    first_name,
+    last_name,
+    email,
+    password,
+    isReporter,
+    isEditor
+) {
+    return db.query(
+        `
+        INSERT INTO users (first_name, last_name, email, password, isReporter, isEditor)
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
+    `,
+        [first_name, last_name, email, password, isReporter, isEditor]
+    );
+};
+exports.getAccountInfo = function getAccountInfo(id) {
+    return db.query(
+        `
+        select * from users WHERE id = $1
+    `,
+        [id]
+    );
+};

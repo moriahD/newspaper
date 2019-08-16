@@ -14,6 +14,11 @@ export default class Article extends React.Component {
         const aritlce = await axios.get(`/admin/article/${id}.json`);
         console.log(aritlce.data);
         this.setState(aritlce.data);
+        const s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        s.innerHTML = "CKEDITOR.replace( 'article_body' );";
+        document.body.appendChild(s);
     }
     changeTitle(e) {
         this.setState({
@@ -123,6 +128,7 @@ export default class Article extends React.Component {
                     <label htmlFor="article_body">Article Body:</label>
 
                     <textarea
+                        id="article_body"
                         name="article_body"
                         defaultValue={this.state.article_body}
                         value={this.state.article_body}

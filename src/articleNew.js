@@ -150,7 +150,7 @@ export default class Article extends React.Component {
                         value={this.props.match.params.id}
                     />
                     <button className="updateBtn" onClick={e => this.submit(e)}>
-                        Update
+                        Submit Article
                     </button>
                 </form>
             </div>

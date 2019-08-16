@@ -102,8 +102,7 @@ search input {
 /*admin users page*/
 .usersettingBox {
     margin: 70px 1% 1% 1%;
-    display: inline-flex;
-    width: 98%;
+    width: 50%;
 }
 .articleLists a,
 .articleLists p {
@@ -177,4 +176,20 @@ search input {
 }
 .categoryWrap a:hover {
     color: #0092ca;
+}
+.usersettingBox textarea,
+.usersettingBox select,
+.usersettingBox input {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.usersettingBox .saveBtn {
+    clear: both;
+}
+
+.usersettingBox input.userRole {
+    width: auto;
+    height: auto;
 }
