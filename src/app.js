@@ -1,5 +1,4 @@
 import React from "react";
-import Uploader from "./uploader";
 import SetUsers from "./setusers";
 import Articles from "./articles";
 import Article from "./article";
@@ -69,17 +68,6 @@ export default class App extends React.Component {
                         <Route path="/chat" component={Chat} />
                     </div>
                 </BrowserRouter>
-
-                {this.state.uploaderIsVisible && (
-                    <Uploader
-                        onClick={() =>
-                            this.setState({
-                                uploaderIsVisible: false
-                            })
-                        }
-                        done={image => this.setState({ image })}
-                    />
-                )}
             </div>
         );
     }

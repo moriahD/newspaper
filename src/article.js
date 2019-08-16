@@ -1,4 +1,6 @@
 import React from "react";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import axios from "./axios";
 import UploadImage from "./uploadImage";
@@ -14,11 +16,11 @@ export default class Article extends React.Component {
         const aritlce = await axios.get(`/admin/article/${id}.json`);
         console.log(aritlce.data);
         this.setState(aritlce.data);
-        const s = document.createElement("script");
-        s.type = "text/javascript";
-        s.async = true;
-        s.innerHTML = "CKEDITOR.replace( 'article_body' );";
-        document.body.appendChild(s);
+        // const s = document.createElement("script");
+        // s.type = "text/javascript";
+        // s.async = true;
+        // s.innerHTML = "CKEDITOR.replace( 'article_body' );";
+        // document.body.appendChild(s);
     }
     changeTitle(e) {
         this.setState({
@@ -33,6 +35,11 @@ export default class Article extends React.Component {
     changeArticleBody(e) {
         this.setState({
             article_body: e.target.value
+        });
+    }
+    changeArticleBodyByCK(e) {
+        this.setState({
+            article_body: e
         });
     }
     handleImageUploadChange(e) {
@@ -136,7 +143,25 @@ export default class Article extends React.Component {
                     >
                         {this.state.article_body}
                     </textarea>
-
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={this.state.article_body}
+                        onInit={editor => {
+                            // You can store the "editor" and use when it is needed.
+                            console.log("Editor is ready to use!", editor);
+                        }}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            console.log({ event, editor, data });
+                            this.changeArticleBodyByCK(data);
+                        }}
+                        onBlur={editor => {
+                            console.log("Blur.", editor);
+                        }}
+                        onFocus={editor => {
+                            console.log("Focus.", editor);
+                        }}
+                    />
                     <input
                         type="hidden"
                         name="article_id"
