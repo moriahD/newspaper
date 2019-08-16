@@ -71,13 +71,14 @@ exports.newArticle = function newArticle(
     category_id,
     title,
     description,
-    article_body
+    article_body,
+    image
 ) {
     return db.query(
         `
-        INSERT INTO article (reporter_id, category_id, title, description, article_body)
-        VALUES ($1, $2, $3, $4, $5) RETURNING *
+        INSERT INTO article (reporter_id, category_id, title, description, article_body, image)
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
     `,
-        [reporter_id, category_id, title, description, article_body]
+        [reporter_id, category_id, title, description, article_body, image]
     );
 };

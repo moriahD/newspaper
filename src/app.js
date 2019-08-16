@@ -47,6 +47,7 @@ export default class App extends React.Component {
                         <Route path="/admin/users" component={SetUsers} />
                         <Route
                             exact
+                            strict
                             path="/admin/articles/new"
                             component={ArticleNew}
                         />

@@ -8,5 +8,6 @@ CREATE TABLE article(
     description TEXT,
     article_body TEXT,
     last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    image VARCHAR
 );

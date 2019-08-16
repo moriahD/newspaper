@@ -88,7 +88,8 @@ app.post("/admin/article/new.json", async (req, res) => {
             1,
             req.body.editTitle,
             req.body.editDescription,
-            req.body.editArticleBody
+            req.body.editArticleBody,
+            req.body.editImage
         );
         res.json(result.rows[0]);
     } catch (err) {
@@ -142,6 +143,22 @@ app.post("/admin/deleteArticle/:id.json", async function(req, res) {
         console.log("Error Message in /admin/deleteArticle.json router: ", err);
     }
 });
+// upload images
+app.post(
+    "/admin/uploader.json",
+    uploader.single("file"),
+    s3.upload,
+    (req, res) => {
+        if (req.file) {
+            const url = config.s3Url + req.file.filename;
+            console.log("url", url);
+            res.json({ image: url });
+        } else {
+            console.log("Error in upload: ");
+            res.status(500).json();
+        }
+    }
+);
 app.get("/admin/*", function(req, res) {
     console.log("/admin/main ciao");
     if (req.session.userId) {

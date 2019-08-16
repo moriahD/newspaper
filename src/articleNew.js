@@ -1,6 +1,7 @@
 import React from "react";
 
 import axios from "./axios";
+import UploadImage from "./uploadImage";
 
 export default class Article extends React.Component {
     constructor(props) {
@@ -29,6 +30,33 @@ export default class Article extends React.Component {
             article_body: e.target.value
         });
     }
+    handleImageUploadChange(e) {
+        console.log(e.target.files[0]);
+        this.setState({
+            [e.target.name]: e.target.files[0]
+        });
+    }
+    changeImage(props) {
+        // this.setState({
+        //     image: props.image
+        // });
+    }
+    async handleUploadClick(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("file", this.state.file);
+        try {
+            const { data } = await axios.post("/admin/uploader.json", formData);
+            console.log("data: ", data.image);
+            // this.changeImage(data.image);
+            this.setState({
+                image: data.image
+            });
+            console.log("this state: ", this.state.image);
+        } catch (err) {
+            console.log(`error in /admin/uploader.json`, err);
+        }
+    }
     async submit(e) {
         e.preventDefault();
         console.log("state", this.state);
@@ -36,7 +64,8 @@ export default class Article extends React.Component {
             const { data } = await axios.post(`/admin/article/new.json`, {
                 editTitle: this.state.title,
                 editDescription: this.state.description,
-                editArticleBody: this.state.article_body
+                editArticleBody: this.state.article_body,
+                editImage: this.state.image
             });
             console.log("data", data);
             location.replace(`/admin/articles/${data.id}`);
@@ -47,10 +76,30 @@ export default class Article extends React.Component {
 
     render() {
         return (
-            <div className="articleFormWrap">
+            <div className="articleFormWrapNew">
                 <form>
                     <label htmlFor="title">Select Category:</label>
-
+                    <div className="uploaderModal">
+                        <div className="innerModal">
+                            <label>
+                                Upload file
+                                <input
+                                    type="file"
+                                    name="file"
+                                    onChange={e =>
+                                        this.handleImageUploadChange(e)
+                                    }
+                                />
+                            </label>
+                            <button
+                                type="submit"
+                                onClick={e => this.handleUploadClick(e)}
+                            >
+                                Upload
+                            </button>
+                            <img src={this.state.image} />
+                        </div>
+                    </div>
                     <label htmlFor="title">Title:</label>
                     <textarea
                         name="title"

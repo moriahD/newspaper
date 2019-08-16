@@ -114,7 +114,15 @@ search input {
 .articleFormWrap {
     margin: 70px 1% 1% 1%;
 }
-.articleFormWrap textarea {
+.articleFormWrapNew {
+    margin: 70px 7px 7px 7px;
+    background: #fff;
+    z-index: 11111;
+    position: absolute;
+    padding: 10px;
+}
+.articleFormWrap textarea,
+.articleFormWrapNew textarea {
     width: 100%;
 }
 .articleLists .list {
@@ -128,6 +136,11 @@ search input {
     display: block;
     border-bottom: 1px solid #ccc;
     padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
 }
 #front_nav ul {
     -webkit-box-align: center;
