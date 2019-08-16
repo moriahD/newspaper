@@ -191,6 +191,24 @@ app.post("/admin/adduser.json", async (req, res) => {
         console.log("err in /admin/adduser.json", err);
     }
 });
+app.post("/admin/updateUser.json", async (req, res) => {
+    const { first_name, last_name, email, password } = req.body;
+    try {
+        let hashedpw = await bc.hashPassword(password);
+        let user = await db.updateAccount(
+            first_name,
+            last_name,
+            email,
+            req.session.userId,
+            hashedpw
+        );
+
+        console.log("/admin/updateUser.json is happening");
+        res.json({ success: true });
+    } catch (err) {
+        console.log("err in /admin/adduser.json", err);
+    }
+});
 
 app.get("/admin/*", function(req, res) {
     console.log("/admin/main ciao");

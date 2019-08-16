@@ -107,3 +107,17 @@ exports.getAccountInfo = function getAccountInfo(id) {
         [id]
     );
 };
+exports.updateAccount = function updateAccount(
+    first_name,
+    last_name,
+    email,
+    id,
+    password
+) {
+    return db.query(
+        `
+        UPDATE users SET first_name=$1, last_name=$2, email=$3, password=$5 WHERE id = $4
+    `,
+        [first_name, last_name, email, id, password]
+    );
+};

@@ -32,6 +32,20 @@ export default class MyAccount extends React.Component {
             password: e.target.value
         });
     }
+    async updateUser(e) {
+        e.preventDefault();
+        try {
+            const { data } = await axios.post(`/admin/updateUser.json`, {
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
+                email: this.state.email,
+                password: this.state.password
+            });
+            console.log("data", data);
+        } catch (err) {
+            console.log(`error in /admin/updateUser.json`, err);
+        }
+    }
     render() {
         return (
             <div
@@ -74,7 +88,7 @@ export default class MyAccount extends React.Component {
                     type="password"
                     onChange={e => this.setPassword(e)}
                 />
-                <button className="saveBtn" onClick={e => this.saveUser(e)}>
+                <button className="saveBtn" onClick={e => this.updateUser(e)}>
                     Save
                 </button>
             </div>
