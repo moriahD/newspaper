@@ -1,9 +1,13 @@
 
 <div class="">
     {{#articles}}
-    <p>
-        <a href="/article/{{id}}">{{title}}</a>
-     </p>
+    <div>
+        <a href="/article/{{id}}">
+            <img src="{{image}}"/>
+            <p>{{title}}</p>
+
+        </a>
+    </div>
     {{/articles}}
 
 </div>

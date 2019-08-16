@@ -74,6 +74,7 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 // ADMIN SIDE
+
 app.get("/admin", function(req, res) {
     if (req.session.userId) {
         res.redirect("/admin/main");
@@ -85,7 +86,7 @@ app.post("/admin/article/new.json", async (req, res) => {
     try {
         const result = await db.newArticle(
             1,
-            1,
+            req.body.category,
             req.body.editTitle,
             req.body.editDescription,
             req.body.editArticleBody,
@@ -112,7 +113,8 @@ app.post("/admin/article/:id.json", async (req, res) => {
             req.body.editTitle,
             req.body.editDescription,
             req.body.editArticleBody,
-            req.params.id
+            req.params.id,
+            req.body.editImage
         );
         res.json(result.rows[0]);
     } catch (err) {
@@ -159,6 +161,7 @@ app.post(
         }
     }
 );
+
 app.get("/admin/*", function(req, res) {
     console.log("/admin/main ciao");
     if (req.session.userId) {
@@ -237,7 +240,11 @@ app.post("/login", function(req, res) {
                 });
         });
 });
-
+app.get("/admin/logout", (req, res) => {
+    console.log("logout is happening");
+    //req.session = null;
+    res.redirect = "/";
+});
 // server side socket code
 io.on("connection", function(socket) {
     console.log(`socket with the id ${socket.id} is now connected`);

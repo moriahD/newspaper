@@ -33,6 +33,7 @@ export default function Articles() {
                     <div key={list.id} className="listwrap">
                         <div className="list">
                             <p> {list.id}</p>
+                            <img className="smallImgAdm" src={list.image} />
                             <p className="articleTitle">{list.title}</p>
                             <p>{list.last_update}</p>
                             <Link to={`/admin/articles/${list.id}`}>

@@ -160,3 +160,21 @@ search input {
 .articleLists .bodyLink {
     color: #0092ca;
 }
+.smallImgAdm {
+    max-width: 100px;
+}
+.categoryImg {
+    float: left;
+    max-width: 200px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.categoryWrap {
+    clear: both;
+}
+.categoryWrap a {
+    text-decoration: none;
+}
+.categoryWrap a:hover {
+    color: #0092ca;
+}

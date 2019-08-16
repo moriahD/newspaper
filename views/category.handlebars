@@ -1,10 +1,14 @@
 
 
-<div class="">
+<div class="category">
     {{#articles}}
-    <p>
-        <a href="/article/{{id}}">{{title}}</a>
-     </p>
+        <div class="categoryWrap">
+        <a href="/article/{{id}}">
+            <img class="categoryImg" src="{{image}}"/>
+            <h1>{{title}}</h1>
+
+        </a>
+    </div>
     {{/articles}}
 
 </div>

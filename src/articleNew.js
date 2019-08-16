@@ -30,6 +30,12 @@ export default class Article extends React.Component {
             article_body: e.target.value
         });
     }
+    changeCategory(e) {
+        this.setState({
+            category: e.target.value
+        });
+        console.log("category target:", e.target.value);
+    }
     handleImageUploadChange(e) {
         console.log(e.target.files[0]);
         this.setState({
@@ -65,7 +71,8 @@ export default class Article extends React.Component {
                 editTitle: this.state.title,
                 editDescription: this.state.description,
                 editArticleBody: this.state.article_body,
-                editImage: this.state.image
+                editImage: this.state.image,
+                category: this.state.category
             });
             console.log("data", data);
             location.replace(`/admin/articles/${data.id}`);
@@ -78,7 +85,16 @@ export default class Article extends React.Component {
         return (
             <div className="articleFormWrapNew">
                 <form>
-                    <label htmlFor="title">Select Category:</label>
+                    <label htmlFor="category">Select Category:</label>
+                    <select
+                        name="category"
+                        onChange={e => this.changeCategory(e)}
+                    >
+                        <option value="1">Business</option>
+                        <option value="2">Life</option>
+                        <option value="3">World</option>
+                        <option value="4">Tech</option>
+                    </select>
                     <div className="uploaderModal">
                         <div className="innerModal">
                             <label>

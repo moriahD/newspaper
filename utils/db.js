@@ -29,7 +29,7 @@ exports.getArticleById = function getArticleById(id) {
 exports.getArticlesByCategory = function getArticlesByCategory(category) {
     return db.query(
         `
-        select * from article WHERE category_id = $1
+        select * from article WHERE category_id = $1 ORDER BY id DESC
     `,
         [category]
     );
@@ -56,13 +56,14 @@ exports.updateArticle = function updateArticle(
     title,
     description,
     article_body,
-    id
+    id,
+    image
 ) {
     return db.query(
         `
-        UPDATE article SET title=$1, description=$2, article_body=$3 WHERE id = $4
+        UPDATE article SET title=$1, description=$2, article_body=$3, image=$5 WHERE id = $4
     `,
-        [title, description, article_body, id]
+        [title, description, article_body, id, image]
     );
 };
 

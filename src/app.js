@@ -38,9 +38,6 @@ export default class App extends React.Component {
                                 <div className="linkNav">
                                     <Link to="/admin/category">Category</Link>
                                 </div>
-                                <div className="linkNav">
-                                    <Link to="/admin/logout">Logout</Link>
-                                </div>
                             </div>
                         </div>
 
